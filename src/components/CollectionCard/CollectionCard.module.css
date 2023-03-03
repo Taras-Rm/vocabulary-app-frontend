@@ -1,0 +1,36 @@
+.collectionCard {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    width: 300px;
+    border: 1px solid rgb(219, 217, 217);
+    cursor: pointer;
+}
+
+.collectionCard:hover {
+    box-shadow: 0px 2px 5px 0px rgba(41, 41, 41, 0.75);
+}
+
+.collectionCard:nth-child(3) {
+    margin-right: 0px;
+}
+
+.collectionCard_top {
+    background-color: bisque;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
+}
+
+.collectionCard_middle {
+    height: 100px;
+    border-bottom: 1px solid rgb(219, 217, 217);
+}
+
+.collectionCard_top_content {
+    padding: 20px;
+}
+
+.collectionCard_bottom {
+   padding: 20px;
+}

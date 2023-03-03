@@ -1,0 +1,13 @@
+.addCollectionPage {
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+.input {
+   background-color: transparent;
+   border: none;
+   border-bottom: 1px solid grey;
+   border-radius: 0;
+   padding: 10px 5px;
+   margin-bottom: 15px;
+}
