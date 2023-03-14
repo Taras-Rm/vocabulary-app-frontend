@@ -11,9 +11,10 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
   const [form] = useForm();
 
   useEffect(() => {
-    if (editWordId) {
+    if (editWordId && collectionId) {
       getWordMutation.mutate({
         id: editWordId,
+        collectionId: collectionId
       });
     }
   }, [editWordId]);
@@ -41,6 +42,7 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
   const updateWordHandler = (values) => {
     updateWordMutation.mutate({
       id: editWordId,
+      collectionId: collectionId,
       word: values.word,
       translation: values.translation,
       partOfSpeech: values.partOfSpeech,

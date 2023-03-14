@@ -68,9 +68,10 @@ const Words = ({ setShowComponent }) => {
     },
   });
 
-  const deleteWordHandler = (wordId) => {
+  const deleteWordHandler = (wordId, collectionId) => {
     deleteWordMutation.mutate({
       id: wordId,
+      collectionId: collectionId
     });
   };
 
@@ -109,7 +110,7 @@ const Words = ({ setShowComponent }) => {
             <Popconfirm
               title={"Delete word ?"}
               description={`Do you want to delete word - ${word.word} ?`}
-              onConfirm={() => deleteWordHandler(word.id)}
+              onConfirm={() => deleteWordHandler(word.id, params.collectionId)}
               okText="Yes"
               cancelText="No"
             >
