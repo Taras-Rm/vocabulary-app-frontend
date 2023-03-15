@@ -1,22 +1,21 @@
-import { useQueryClient } from "react-query";
 import { generateCollectionPdfFile } from "../../../../api/collections";
 import { Button, message } from "antd";
 import { useMutation } from "react-query";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { downloadAttachedFile } from "../../../../utils/downloadFile";
 
 const ActionsTab = ({ collection }) => {
-  const queryClient = useQueryClient();
   const params = useParams();
 
-  const [isFileGenerationLoading, setIsFileGenerationLoading] = useState(false)
+  const [isFileGenerationLoading, setIsFileGenerationLoading] = useState(false);
 
   const generateCollectionPdfFileMutation = useMutation(
     generateCollectionPdfFile,
     {
-      onSuccess: () => {
-        setIsFileGenerationLoading(false)
-        queryClient.invalidateQueries(["collection", params.collectionId]);
+      onSuccess: (data) => {
+        setIsFileGenerationLoading(false);
+        downloadAttachedFile(data);
         message.success("File is generated");
       },
       onError: (error) => {
@@ -26,7 +25,7 @@ const ActionsTab = ({ collection }) => {
   );
 
   const onGeneratePdfFileClick = () => {
-    setIsFileGenerationLoading(true)
+    setIsFileGenerationLoading(true);
     generateCollectionPdfFileMutation.mutate({
       collectionId: params.collectionId,
     });
@@ -34,7 +33,10 @@ const ActionsTab = ({ collection }) => {
 
   return (
     <div>
-      <Button loading={isFileGenerationLoading} onClick={() => onGeneratePdfFileClick(collection.id)}>
+      <Button
+        loading={isFileGenerationLoading}
+        onClick={() => onGeneratePdfFileClick(collection.id)}
+      >
         {collection?.pdfFileUrl ? "Regenerate pdf file" : "Generate pdf file"}
       </Button>
       {collection?.pdfFileUrl && (
