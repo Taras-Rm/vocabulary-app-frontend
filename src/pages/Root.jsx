@@ -5,11 +5,13 @@ import CollectionPage from "./CollectionPage/CollectionPage";
 import CreateCollectionPage from "./CreateCollectionPage/CreateCollectionPage";
 import HomePage from "./HomePage/HomePage";
 import LoginPage from "./LoginPage/LoginPage";
+import RegistrationPage from "./RegistrationPage/RegistrationPage";
 
 const Root = () => {
   return (
     <Switch>
       <Route exact path={"/login"} component={LoginPage} />
+      <Route exact path={"/registration"} component={RegistrationPage} />
       <Layout>
         <Switch>
           <PrivateRoute key={"/"} exact path={"/"} component={HomePage} />

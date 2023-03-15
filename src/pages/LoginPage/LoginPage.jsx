@@ -1,5 +1,6 @@
 import { Button, Form, Input, message, Typography } from "antd";
 import { useMutation } from "react-query";
+import { Link } from "react-router-dom";
 import { login } from "../../api/auth";
 import s from "./LoginPage.module.css";
 
@@ -34,19 +35,27 @@ const LoginPage = () => {
           </Form.Item>
 
           <Form.Item name="password" label="Password" required>
-            <Input type="password"/>
+            <Input type="password" />
           </Form.Item>
 
           <Form.Item>
             <Button
               type="primary"
-              style={{ width: "100%", marginTop: 10, backgroundColor: "purple" }}
+              style={{
+                width: "100%",
+                marginTop: 10,
+                backgroundColor: "purple",
+              }}
               htmlType="submit"
             >
               Login
             </Button>
           </Form.Item>
         </Form>
+
+        <Link to={"/registration"} style={{textDecoration: "none"}}>
+          <Typography.Link>Registration</Typography.Link>
+        </Link>
       </div>
     </div>
   );
