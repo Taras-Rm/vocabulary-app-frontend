@@ -154,6 +154,11 @@ const AddWords = ({ setShowComponent, collection }) => {
     setWords([...words, { word: "", translation: "", partOfSpeech: "" }]);
   };
 
+  const getWordsFromString = (string) => {
+    let words = string.split("\n").filter((w) => w !== "");
+    return words;
+  };
+
   return (
     <div>
       <div
@@ -193,17 +198,16 @@ const AddWords = ({ setShowComponent, collection }) => {
 
             reader.onload = function (e) {
               let content = reader.result;
-              let inputWords = content
-                .split("\n")
-                .filter((w) => w !== "")
-                .map((w) => {
-                  return {
-                    word: w,
-                    translation: "",
-                    partOfSpeech: "",
-                  };
-                });
-              setWords([...words, ...inputWords]);
+              let inputWords = getWordsFromString(content);
+
+              let wordsFromFile = inputWords.map((w) => {
+                return {
+                  word: w,
+                  translation: "",
+                  partOfSpeech: "",
+                };
+              });
+              setWords([...words, ...wordsFromFile]);
             };
 
             reader.readAsText(info.file.originFileObj);
