@@ -4,8 +4,11 @@ import { useMutation } from "react-query";
 import { useParams } from "react-router";
 import { useState } from "react";
 import { downloadAttachedFile } from "../../../../utils/downloadFile";
+import { useTranslation } from "react-i18next";
 
 const ActionsTab = ({ collection }) => {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const [isFileGenerationLoading, setIsFileGenerationLoading] = useState(false);
@@ -16,7 +19,7 @@ const ActionsTab = ({ collection }) => {
       onSuccess: (data) => {
         setIsFileGenerationLoading(false);
         downloadAttachedFile(data);
-        message.success("File is generated");
+        message.success(t("collection.actionsTab.fileIsDownloadedSuccess"));
       },
       onError: (error) => {
         message.error(error.response.data.message);
@@ -37,13 +40,8 @@ const ActionsTab = ({ collection }) => {
         loading={isFileGenerationLoading}
         onClick={() => onGeneratePdfFileClick(collection.id)}
       >
-        {collection?.pdfFileUrl ? "Regenerate pdf file" : "Generate pdf file"}
+        {t("collection.actionsTab.downloadPdfFile")}
       </Button>
-      {collection?.pdfFileUrl && (
-        <Button type="link" href={collection?.pdfFileUrl}>
-          Download pdf file
-        </Button>
-      )}
     </div>
   );
 };

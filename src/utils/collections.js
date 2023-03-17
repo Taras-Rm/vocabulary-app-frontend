@@ -7,14 +7,14 @@ export const languages = [
     flag: <ReactCountryFlag countryCode="GB"/>
   },
   {
-    code: "ua",
+    code: "uk",
     description: "Ukrainian",
     flag: <ReactCountryFlag countryCode="UA"/>
   }
 ];
 
 export const languageCodeToCountryCode = (langCode) => {
-    if(langCode == "ua") {
+    if(langCode == "uk") {
         return "ua"
     }
     if(langCode == "en") {

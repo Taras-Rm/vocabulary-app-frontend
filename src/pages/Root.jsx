@@ -6,6 +6,7 @@ import CreateCollectionPage from "./CreateCollectionPage/CreateCollectionPage";
 import HomePage from "./HomePage/HomePage";
 import LoginPage from "./LoginPage/LoginPage";
 import RegistrationPage from "./RegistrationPage/RegistrationPage";
+import SettingsPage from "./SettingsPage/SettingsPage";
 
 const Root = () => {
   return (
@@ -25,6 +26,7 @@ const Root = () => {
             path={"/collection/:collectionId"}
             component={CollectionPage}
           />
+          <PrivateRoute exact path={"/settings"} component={SettingsPage} />
         </Switch>
       </Layout>
     </Switch>

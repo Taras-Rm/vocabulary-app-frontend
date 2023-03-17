@@ -1,12 +1,26 @@
-import { Layout as AntdLayout } from "antd";
+import { Layout as AntdLayout, Select } from "antd";
 import {
   HomeOutlined,
   PlusCircleOutlined,
   LogoutOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import MyButton from "./MyButton/MyButton";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { getAuthenticatedUser } from "../api/auth";
+import { useQuery } from "react-query";
 
 const Layout = ({ children }) => {
+  const { t, i18n } = useTranslation();
+
+  const { data, isLoading, error } = useQuery("me", getAuthenticatedUser, {
+    onSuccess: (data) => {
+      i18n.changeLanguage(data.user.settings.language);
+    },
+    retry: false,
+  });
+
   const handleLogoutClick = () => {
     localStorage.removeItem("authToken");
   };
@@ -31,14 +45,21 @@ const Layout = ({ children }) => {
               icon={<HomeOutlined />}
               style={{ fontSize: "15px" }}
             >
-              Home
+              {t("menu.home")}
             </MyButton>
             <MyButton
               to="/createCollection"
               icon={<PlusCircleOutlined />}
               style={{ marginLeft: 20, fontSize: "15px" }}
             >
-              New Collection
+              {t("menu.newCollection")}
+            </MyButton>
+            <MyButton
+              to="/settings"
+              icon={<SettingOutlined />}
+              style={{ marginLeft: 20, fontSize: "15px" }}
+            >
+              {t("menu.settings")}
             </MyButton>
             <MyButton
               to="/login"
@@ -46,7 +67,7 @@ const Layout = ({ children }) => {
               style={{ marginLeft: 20, fontSize: "15px" }}
               onClick={handleLogoutClick}
             >
-              Logout
+              {t("menu.logout")}
             </MyButton>
           </div>
         </div>

@@ -10,8 +10,11 @@ import ReactCountryFlag from "react-country-flag";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { languageCodeToCountryCode } from "../../utils/collections";
 import SearchTab from "./Tabs/SearchTab/SearchTab";
+import { useTranslation } from "react-i18next";
 
 function CollectionPage() {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const { data: collection, isLoading: collectionLoading } = useQuery(
@@ -22,17 +25,17 @@ function CollectionPage() {
   const items = [
     {
       key: "words",
-      label: `Words`,
-      children: <WordsTab collection={collection}/>,
+      label: t("collection.tabs.words"),
+      children: <WordsTab collection={collection} />,
     },
     {
       key: "search",
-      label: `Search`,
+      label: t("collection.tabs.search"),
       children: <SearchTab collection={collection} />,
     },
     {
       key: "actions",
-      label: `Actions`,
+      label: t("collection.tabs.actions"),
       children: <ActionsTab collection={collection} />,
     },
   ];

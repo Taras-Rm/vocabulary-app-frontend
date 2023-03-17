@@ -1,4 +1,4 @@
-import { Button, Dropdown, message, Space, Typography } from "antd";
+import { Dropdown, message, Typography } from "antd";
 import { Link, generatePath } from "react-router-dom";
 import s from "./CollectionCard.module.css";
 import { MoreOutlined } from "@ant-design/icons";
@@ -7,8 +7,11 @@ import EditCollectionModalWindow from "./EditCollectionModalWindow";
 import { deleteCollection } from "../../api/collections";
 import ModalConfirm from "../ModalConfirm/ModalConfirm";
 import { useMutation, useQueryClient } from "react-query";
+import { useTranslation } from "react-i18next";
 
 export const CollectionCard = (props) => {
+  const { t } = useTranslation()
+
   const { id, name, words } = props;
   const queryClient = useQueryClient();
 
@@ -26,11 +29,11 @@ export const CollectionCard = (props) => {
 
   const items = [
     {
-      label: "Edit",
+      label: t("buttons.edit"),
       key: "edit",
     },
     {
-      label: "Delete",
+      label: t("buttons.delete"),
       key: "delete",
       danger: true,
     },
@@ -45,7 +48,7 @@ export const CollectionCard = (props) => {
     onSuccess: () => {
       setShowDeleteCollectionConfirm(null);
       queryClient.invalidateQueries(["collections"]);
-      message.success("Collection is deleted !");
+      message.success(t('collectionCard.deleteModal.success'));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -79,7 +82,7 @@ export const CollectionCard = (props) => {
             </Dropdown>
           </div>
 
-          <Typography.Text>{words.length} words</Typography.Text>
+          <Typography.Text>{words.length} {t('collectionCard.words')}</Typography.Text>
         </div>
       </div>
       <div className={s.collectionCard_middle}></div>
@@ -90,7 +93,7 @@ export const CollectionCard = (props) => {
         collectionId={id}
       />
       <ModalConfirm
-        title={`Do you really want to delete ${name} ?`}
+        title={`${t('collectionCard.deleteModal.text')} ${name} ?`}
         showDeleteConfirm={showDeleteCollectionConfirm}
         setShowDeleteConfirm={setShowDeleteCollectionConfirm}
         deleteHandler={deleteCollectionHandler}

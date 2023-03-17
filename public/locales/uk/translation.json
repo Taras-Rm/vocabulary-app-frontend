@@ -1,0 +1,98 @@
+{
+    "collectionCard": {
+        "words": "слова",
+
+        "editModal": {
+            "text": "Редагувати колекцію",
+            "success": "Колекцію оновлено !",
+            "namePlaceholder": "Назва"
+        },
+        "deleteModal": {
+            "text": "Ви справді хочете видалити",
+            "success": "Колекцію видалено !"
+        }
+    },
+    "buttons": {
+        "delete": "Видалити",
+        "edit": "Редагувати",
+        "update": "Оновити",
+        "create": "Створити",
+        "addWords": "Додати слова",
+        "addWord": "Додати слово",
+        "yes": "Так",
+        "no": "Ні"
+    },
+    "menu": {
+        "home": "Головна",
+        "newCollection": "Нова колекція",
+        "settings": "Налаштування",
+        "logout": "Вихід"
+    },
+    "home": {
+        "collectionsTitle": "Колекції"
+    },
+    "createCollection": {
+        "title": "Створити колекцію",
+        "namePlaceholder": "Назва",
+        "fromLanguage": "З мови",
+        "toLanguage": "На мову",
+        "successCreation": "Колекцію створено !"
+    },
+    "collection": {
+       "tabs": {
+            "words": "Слова",
+            "search": "Пошук",
+            "actions": "Дії"
+       },
+       "wordsTab": {
+            "title": "Слова",
+            "table": {
+                "word": "Слово",
+                "translation": "Переклад",
+                "partOfSpeech": "Частина мови",
+                "actions": "Дії"
+            },
+            "deleteModal": {
+                "title": "Видалити слово ?",
+                "text": "Ви хочете видалити слово - ",
+                "success": "Слово видалено !"
+            },
+            "editModal": {
+                "title": "Редагувати",
+                "translationPlaceholder": "Переклад",
+                "examplePlaceholder": "Речення",
+                "namePlaceholder": "Назва",
+                "partOfSpeechPlaceholder": "Переклад",
+                "success": "Слово оновлено !"
+            }
+       },
+       "searchTab": {
+            "searchPlaceholder": "Пошук ...",
+            "noResults": "Немає результатів",
+            "settings": {
+                "title": "Налаштування пошуку",
+                "searchBy": "Шукати за",
+                "namePlaceholder": "Назва",
+
+                "word": "Слово",
+                "translation": "Переклад",
+
+                "partOfSpeech": "Частина мови",
+                "partOfSpeechPlaceholder": "Обрати частини мови ..."
+            }
+       },
+       "actionsTab": {
+            "downloadPdfFile": "Завантажити pdf файл",
+            "fileIsDownloadedSuccess": "Файл завантажено !"
+       }
+    },
+    "settings": {
+        "title": "Налаштування",
+        "language": "Мова",
+        "languageUpdateSuccess": "Мову оновлено !"
+    },
+    "languages": {
+        "english": "Англійська",
+        "ukrainian": "Українська"
+   }
+}

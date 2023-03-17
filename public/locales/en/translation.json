@@ -1,0 +1,99 @@
+{
+    "collectionCard": {
+        "words": "words",
+
+        "editModal": {
+            "text": "Edit collection",
+            "success": "Collection is updated !",
+            "namePlaceholder": "Collection is updated !"
+
+        },
+        "deleteModal": {
+            "text": "Do you really want to delete",
+            "success": "Collection is deleted !"
+        }
+    },
+    "buttons": {
+        "delete": "Delete",
+        "edit": "Edit",
+        "update": "Update",
+        "create": "Create",
+        "addWords": "Add words",
+        "addWord": "Add word",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "menu": {
+        "home": "Home",
+        "newCollection": "New collection",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "home": {
+        "collectionsTitle": "Collections"
+    },
+    "createCollection": {
+        "title": "Create collection",
+        "namePlaceholder": "Name",
+        "fromLanguage": "From language",
+        "toLanguage": "To language",
+        "successCreation": "Colletion is created !"
+    },
+    "collection": {
+       "tabs": {
+            "words": "Words",
+            "search": "Search",
+            "actions": "Actions"
+       },
+       "wordsTab": {
+            "title": "Words",
+            "table": {
+                "word": "Word",
+                "translation": "Translation",
+                "partOfSpeech": "Part of speech",
+                "actions": "Actions"
+            },
+            "deleteModal": {
+                "title": "Delete word ?",
+                "text": "Do you want to delete word - ",
+                "success": "Word is deleted !"
+            },
+            "editModal": {
+                "title": "Edit",
+                "translationPlaceholder": "Translation",
+                "examplePlaceholder": "Scentance",
+                "namePlaceholder": "Name",
+                "partOfSpeechPlaceholder": "Translation",
+                "success": "Word is updated !"
+            }
+       },
+       "searchTab": {
+            "searchPlaceholder": "Search ...",
+            "noResults": "No results",
+            "settings": {
+                "title": "Search settings",
+                "searchBy": "Search by",
+                "namePlaceholder": "Name",
+
+                "word": "Word",
+                "translation": "Translation",
+
+                "partOfSpeech": "Part of speech",
+                "partOfSpeechPlaceholder": "Select parts of speech ..."
+            }
+       },
+       "actionsTab": {
+            "downloadPdfFile": "Download pdf file",
+            "fileIsDownloadedSuccess": "File is downloaded !"
+       }
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "languageUpdateSuccess": "Language is updated !"
+    },
+    "languages": {
+        "english": "English",
+        "ukrainian": "Ukrainian"
+   }
+}

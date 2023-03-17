@@ -18,8 +18,11 @@ import { deleteWord, getAllWords } from "../../../../api/words";
 import EditWordModalWindow from "./EditWordModalWindow";
 import { useParams } from "react-router";
 import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { useTranslation } from "react-i18next";
 
 const Words = ({ setShowComponent }) => {
+  const {t} = useTranslation();
+
   const params = useParams();
   const queryClient = useQueryClient();
 
@@ -61,7 +64,7 @@ const Words = ({ setShowComponent }) => {
   const deleteWordMutation = useMutation(deleteWord, {
     onSuccess: () => {
       queryClient.invalidateQueries(["words", params.collectionId]);
-      message.success("Word is deleted !");
+      message.success(t('collection.wordsTab.deleteModal.success'));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -77,18 +80,18 @@ const Words = ({ setShowComponent }) => {
 
   const columns = [
     {
-      title: "Word",
+      title: t('collection.wordsTab.table.word'),
       dataIndex: "word",
       key: "word",
       render: (word) => word,
     },
     {
-      title: "Translation",
+      title: t('collection.wordsTab.table.translation'),
       dataIndex: "translation",
       key: "translation",
     },
     {
-      title: "Part of speech",
+      title: t('collection.wordsTab.table.partOfSpeech'),
       dataIndex: "partOfSpeech",
       key: "partOfSpeech",
       render: (partOfSpeech) => {
@@ -96,7 +99,7 @@ const Words = ({ setShowComponent }) => {
       },
     },
     {
-      title: "Actions",
+      title: t('collection.wordsTab.table.actions'),
       dataIndex: "actions",
       key: "actions",
       align: "center",
@@ -108,11 +111,11 @@ const Words = ({ setShowComponent }) => {
               onClick={() => setEditWordId(word.id)}
             />
             <Popconfirm
-              title={"Delete word ?"}
-              description={`Do you want to delete word - ${word.word} ?`}
+              title={t('collection.wordsTab.deleteModal.title')}
+              description={`${t('collection.wordsTab.deleteModal.text')} ${word.word} ?`}
               onConfirm={() => deleteWordHandler(word.id, params.collectionId)}
-              okText="Yes"
-              cancelText="No"
+              okText={t('buttons.yes')}
+              cancelText={t('buttons.no')}
             >
               <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
             </Popconfirm>
@@ -132,11 +135,11 @@ const Words = ({ setShowComponent }) => {
 
   const items = [
     {
-      label: "Add word",
+      label: t('buttons.addWord'),
       key: "addWord",
     },
     {
-      label: "Add words",
+      label: t('buttons.addWords'),
       key: "addWords",
     },
   ];
@@ -166,7 +169,7 @@ const Words = ({ setShowComponent }) => {
         }}
       >
         <Typography.Title level={2} style={{ margin: 0 }}>
-          Words
+          {t('collection.wordsTab.title')}
         </Typography.Title>
         <Dropdown menu={menuProps}>
           <PlusCircleOutlined style={{ cursor: "pointer", fontSize: 25 }} />
