@@ -21,7 +21,6 @@ function SettingsPage() {
       i18n.changeLanguage(data.language);
 
       message.success(t("settings.languageUpdateSuccess"));
-
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -39,8 +38,16 @@ function SettingsPage() {
   return (
     <div className={s.settingsPage}>
       <Typography.Title level={2}>{t("settings.title")}</Typography.Title>
-      <div>
-        <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "20px 40px",
+          backgroundColor: "white",
+          borderRadius: "10px",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Typography.Text style={{ marginRight: 20 }}>
             {t("settings.language")}
           </Typography.Text>

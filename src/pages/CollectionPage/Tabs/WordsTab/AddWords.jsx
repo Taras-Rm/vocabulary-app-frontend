@@ -20,8 +20,11 @@ import { useMutation, useQueryClient } from "react-query";
 import { createWords, translateWord } from "../../../../api/words";
 import { useParams } from "react-router";
 import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { useTranslation } from "react-i18next";
 
 const AddWords = ({ setShowComponent, collection }) => {
+  const {t} = useTranslation()
+
   const queryClient = useQueryClient();
   const params = useParams();
 
@@ -61,7 +64,7 @@ const AddWords = ({ setShowComponent, collection }) => {
 
   const columns = [
     {
-      title: "Word",
+      title: t('collection.wordsTab.addWords.table.word'),
       dataIndex: "word",
       render: (text, record, index) => {
         return (
@@ -73,12 +76,12 @@ const AddWords = ({ setShowComponent, collection }) => {
       },
     },
     {
-      title: "Part of speech",
+      title: t('collection.wordsTab.addWords.table.partOfSpeech'),
       dataIndex: "partOfSpeech",
       render: (text, record, index) => {
         return (
           <Select
-            placeholder="Part of speech"
+            placeholder={t('collection.wordsTab.addWords.partOfSpeechPlaceholder')}
             options={partsOfSpeechOptions}
             style={{ boxShadow: "none" }}
             onChange={(e) =>
@@ -89,7 +92,7 @@ const AddWords = ({ setShowComponent, collection }) => {
       },
     },
     {
-      title: "Translation",
+      title: t('collection.wordsTab.addWords.table.translation'),
       dataIndex: "translation",
       render: (text, record, index) => {
         return (
@@ -123,7 +126,7 @@ const AddWords = ({ setShowComponent, collection }) => {
   const createWordsMutation = useMutation(createWords, {
     onSuccess: () => {
       queryClient.invalidateQueries(["words", params.collectionId]);
-      message.success("Words are added !");
+      message.success(t('collection.wordsTab.addWords.addWordsSuccess'));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -132,13 +135,13 @@ const AddWords = ({ setShowComponent, collection }) => {
 
   const createWordsHandler = (words) => {
     if (words.length <= 0) {
-      message.warning("You have to add some words");
+      message.warning(t('collection.wordsTab.addWords.addWordsWarn'));
       return;
     }
     for (let i = 0; i < words.length; i++) {
       if (words[i].translation === "" || words[i].word === "") {
         message.warning(
-          "You have to add origin and translation for every word"
+          t('collection.wordsTab.addWords.addOriginTranslationWarn')
         );
         return;
       }
@@ -169,7 +172,7 @@ const AddWords = ({ setShowComponent, collection }) => {
           padding: "0px 10px",
         }}
       >
-        <Tooltip title={"Back to words"}>
+        <Tooltip title={t('collection.wordsTab.addWords.backToWordsBtn')}>
           <Button
             icon={
               <ArrowLeftOutlined
@@ -182,7 +185,7 @@ const AddWords = ({ setShowComponent, collection }) => {
           />
         </Tooltip>
         <Typography.Title level={2} style={{ margin: 0, marginLeft: 10 }}>
-          Add words list
+          {t('collection.wordsTab.addWords.title')}
         </Typography.Title>
       </div>
       <div className={s.dragerBox}>
@@ -217,12 +220,10 @@ const AddWords = ({ setShowComponent, collection }) => {
             <InboxOutlined />
           </p>
           <p className="ant-upload-text">
-            Click or drag file to this area to upload
+            {t('collection.wordsTab.addWords.draggerTitle')}
           </p>
           <p className="ant-upload-hint">
-            Support for a single upload of file. You should select txt file.
-            <br />
-            Words have to be written one per line.
+          {t('collection.wordsTab.addWords.draggerSubtitle')}
           </p>
         </Dragger>
       </div>
@@ -234,7 +235,7 @@ const AddWords = ({ setShowComponent, collection }) => {
           style={{ marginBottom: 20 }}
         />
 
-        <Button onClick={() => handleAddRowButtonClick()}>Add row</Button>
+        <Button onClick={() => handleAddRowButtonClick()}>{t('buttons.addRow')}</Button>
 
         <Button
           style={{
@@ -248,7 +249,7 @@ const AddWords = ({ setShowComponent, collection }) => {
           }}
           onClick={() => createWordsHandler(words)}
         >
-          Add words
+          {t('buttons.addWords')}
         </Button>
       </div>
     </div>

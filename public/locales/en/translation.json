@@ -21,7 +21,9 @@
         "addWords": "Add words",
         "addWord": "Add word",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "add": "Add",
+        "addRow": "Add row"
     },
     "menu": {
         "home": "Home",
@@ -65,6 +67,30 @@
                 "namePlaceholder": "Name",
                 "partOfSpeechPlaceholder": "Translation",
                 "success": "Word is updated !"
+            },
+            "addWord": {
+                "title": "Add word",
+                "wordPlaceholder": "Word",
+                "partOfSpeechPlaceholder": "Part of speech",
+                "translationPlaceholder": "Translation",
+                "scentancePlaceholder": "Scentance",
+                "wordAddedSuccess": "Word is added !",
+                "backToWordsBtn": "Back to words"
+            },
+            "addWords": {
+                "title": "Add words",
+                "draggerTitle": "Click or drag file to this area to upload",
+                "draggerSubtitle": "Support for a single upload of file. You should select txt file. Words have to be written one per line.",
+                "table": {
+                    "word": "Word",
+                    "translation": "Translation",
+                    "partOfSpeech": "Part of speech"
+                },
+                "partOfSpeechPlaceholder": "Part of speec",
+                "addWordsSuccess": "Words are added !",
+                "backToWordsBtn": "Back to words",
+                "addWordsWarn": "You have to add some words",
+                "addOriginTranslationWarn": "You have to add origin and translation for every row"
             }
        },
        "searchTab": {

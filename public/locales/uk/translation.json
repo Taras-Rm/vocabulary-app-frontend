@@ -20,7 +20,9 @@
         "addWords": "Додати слова",
         "addWord": "Додати слово",
         "yes": "Так",
-        "no": "Ні"
+        "no": "Ні",
+        "add": "Додати",
+        "addRow": "Додати рядок"
     },
     "menu": {
         "home": "Головна",
@@ -64,6 +66,30 @@
                 "namePlaceholder": "Назва",
                 "partOfSpeechPlaceholder": "Переклад",
                 "success": "Слово оновлено !"
+            },
+            "addWord": {
+                "title": "Додати слово",
+                "wordPlaceholder": "Слово",
+                "partOfSpeechPlaceholder": "Частина мови",
+                "translationPlaceholder": "Переклад",
+                "scentancePlaceholder": "Речення",
+                "wordAddedSuccess": "Слово додано !",
+                "backToWordsBtn": "Повернутися до всіх слів"
+            },
+            "addWords": {
+                "title": "Додати слова",
+                "draggerTitle": "Натисність або пересуньте сюди файл, щоб завантажити",
+                "draggerSubtitle": "Підтримується завантаження одного файлу. Вам потрібно обрати текстовий файл. Слова повинні бути написані одне на рядок.",
+                "table": {
+                    "word": "Слово",
+                    "translation": "Переклад",
+                    "partOfSpeech": "Частина мови"
+                },
+                "partOfSpeechPlaceholder": "Частина мови",
+                "addWordsSuccess": "Слова додано !",
+                "backToWordsBtn": "Повернутися до всіх слів",
+                "addWordsWarn": "Потрібно додати слова",
+                "addOriginTranslationWarn": "Потрібно додати слово та переклад для кожного рядка"
             }
        },
        "searchTab": {
