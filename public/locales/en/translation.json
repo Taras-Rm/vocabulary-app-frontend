@@ -1,6 +1,7 @@
 {
     "collectionCard": {
         "words": "words",
+        "word": "word",
 
         "editModal": {
             "text": "Edit collection",

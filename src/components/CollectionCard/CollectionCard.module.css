@@ -33,4 +33,6 @@
 
 .collectionCard_bottom {
    padding: 20px;
+   display: flex;
+   justify-content: space-between;
 }

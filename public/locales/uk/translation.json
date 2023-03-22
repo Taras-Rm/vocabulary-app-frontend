@@ -1,6 +1,7 @@
 {
     "collectionCard": {
         "words": "слова",
+        "word": "слово",
 
         "editModal": {
             "text": "Редагувати колекцію",
