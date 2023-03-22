@@ -5,7 +5,7 @@ import { getAuthenticatedUser } from "../../api/auth";
 
 const PrivateRoute = (props) => {
   const {
-    data: user,
+    data,
     isLoading,
     error,
   } = useQuery("me", getAuthenticatedUser, {
@@ -14,6 +14,10 @@ const PrivateRoute = (props) => {
 
   if (isLoading) {
     return <Spin spinning />;
+  }
+
+  if (props.forSuper && !data.user.isSuper) {
+    return <Redirect to="noResult"/>
   }
 
   if (error) {

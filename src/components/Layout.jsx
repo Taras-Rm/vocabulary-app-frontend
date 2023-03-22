@@ -1,9 +1,10 @@
-import { Layout as AntdLayout, Select } from "antd";
+import { Layout as AntdLayout, Select, Spin } from "antd";
 import {
   HomeOutlined,
   PlusCircleOutlined,
   LogoutOutlined,
   SettingOutlined,
+  InfoOutlined,
 } from "@ant-design/icons";
 import MyButton from "./MyButton/MyButton";
 import { useTranslation } from "react-i18next";
@@ -14,16 +15,22 @@ import { useQuery } from "react-query";
 const Layout = ({ children }) => {
   const { t, i18n } = useTranslation();
 
-  const { data, isLoading, error } = useQuery("me", getAuthenticatedUser, {
+  const {
+    data,
+    isLoading,
+    error,
+  } = useQuery("me", getAuthenticatedUser, {
     onSuccess: (data) => {
       i18n.changeLanguage(data.user.settings.language);
     },
-    retry: false,
+    // retry: false,
   });
 
   const handleLogoutClick = () => {
     localStorage.removeItem("authToken");
   };
+
+  if (isLoading) return <Spin spinning/>
 
   return (
     <AntdLayout>
@@ -40,6 +47,15 @@ const Layout = ({ children }) => {
             Vocabulary
           </div>
           <div style={{ display: "flex" }}>
+            {data.user?.isSuper && (
+              <MyButton
+                to="/statistic"
+                icon={<InfoOutlined />}
+                style={{ fontSize: "15px" }}
+              >
+                {"Statistic"}
+              </MyButton>
+            )}
             <MyButton
               to="/"
               icon={<HomeOutlined />}

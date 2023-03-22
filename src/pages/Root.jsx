@@ -5,8 +5,10 @@ import CollectionPage from "./CollectionPage/CollectionPage";
 import CreateCollectionPage from "./CreateCollectionPage/CreateCollectionPage";
 import HomePage from "./HomePage/HomePage";
 import LoginPage from "./LoginPage/LoginPage";
+import NoResultPage from "./NoResultPage/NoResultPage";
 import RegistrationPage from "./RegistrationPage/RegistrationPage";
 import SettingsPage from "./SettingsPage/SettingsPage";
+import StatisticPage from "./StatisticPage/StatisticPage";
 
 const Root = () => {
   return (
@@ -27,6 +29,9 @@ const Root = () => {
             component={CollectionPage}
           />
           <PrivateRoute exact path={"/settings"} component={SettingsPage} />
+          <PrivateRoute exact forSuper={true} path={"/statistic"} component={StatisticPage} />
+
+          <PrivateRoute exact path={"/noResult"} component={NoResultPage} />
         </Switch>
       </Layout>
     </Switch>
