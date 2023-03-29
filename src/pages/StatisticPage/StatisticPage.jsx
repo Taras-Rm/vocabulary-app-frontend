@@ -1,88 +1,51 @@
-import { Spin } from "antd";
+import { Select, Spin, Tabs } from "antd";
+import { statistic } from "antd/es/theme/internal";
 import Typography from "antd/es/typography/Typography";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { getAllWordsCount, getCollections, getUsers } from "../../api/statistic";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import {
+  getAllWordsCount,
+  getCollections,
+  getCountOfWordsPerTime,
+  getUsers,
+} from "../../api/statistic";
+import { formatDate } from "../../utils/date";
 import s from "./StatisticPage.module.css";
+import DetailsTab from "./Tabs/DetailsTab/DetailsTab";
+import GeneralTab from "./Tabs/GeneralTab/GeneralTab";
 
 function StatisticPage() {
-  const { data: users, isLoading: isLoadingUsers } = useQuery(
-    ["statistic", "users"],
-    getUsers,
-    {
-      select(data) {
-        return data.users;
-      },
-    }
-  );
-
-  const { data: collections, isLoading: isLoadingCollections } = useQuery(
-    ["statistic", "collections"],
-    getCollections,
-    {
-      select(data) {
-        return data.collections;
-      },
-    }
-  );
-
-  const { data: wordsCount, isLoading: isLoadingWordsCount } = useQuery(
-    ["statistic", "words", "count"],
-    getAllWordsCount,
-    {
-      select(data) {
-        return data.count;
-      },
-    }
-  );
-
-  if (isLoadingUsers || isLoadingCollections) return <Spin spinning />;
-
   return (
     <div className={s.statisticPage}>
       <Typography.Title level={2}>Statistic</Typography.Title>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "20px 40px",
-          backgroundColor: "white",
-          borderRadius: "10px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 20
-          }}
-        >
-          <Typography.Text style={{ marginRight: 20 }}>Users</Typography.Text>
-          <Typography.Text>{users.length}</Typography.Text>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 20
-          }}
-        >
-          <Typography.Text style={{ marginRight: 20 }}>Collections</Typography.Text>
-          <Typography.Text>{collections.length}</Typography.Text>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography.Text style={{ marginRight: 20 }}>Words</Typography.Text>
-          <Typography.Text>{wordsCount}</Typography.Text>
-        </div>
-      </div>
+      <Tabs
+        centered
+        items={[
+          {
+            key: "general",
+            label: "General",
+            children: <GeneralTab />,
+          },
+          {
+            key: "datails",
+            label: "Details",
+            children: <DetailsTab />,
+          },
+          {
+            key: "search",
+            label: "Search",
+            // children: <ActionsTab collection={collection} />,
+          },
+        ]}
+      />
     </div>
   );
 }

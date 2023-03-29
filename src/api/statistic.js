@@ -14,3 +14,12 @@ export const getAllWordsCount = async () => {
     const response = await API.get("/statistic/words/count")
     return response.data
 }
+
+export const getCountOfWordsPerTime = async ({ time }) => {
+    const response = await API.get("/statistic/words/perTime", {
+        params: {
+            time: time
+        }
+    })
+    return response.data
+}
