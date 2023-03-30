@@ -15,12 +15,15 @@ import {
   Table,
   Tooltip,
   Typography,
+  Upload,
 } from "antd";
 import { useMutation, useQueryClient } from "react-query";
 import { createWords, translateWord } from "../../../../api/words";
 import { useParams } from "react-router";
 import { partsOfSpeechOptions } from "../../../../utils/collections";
 import { useTranslation } from "react-i18next";
+
+const allowedFileFormet = "txt"
 
 const AddWords = ({ setShowComponent, collection }) => {
   const {t} = useTranslation()
@@ -195,6 +198,13 @@ const AddWords = ({ setShowComponent, collection }) => {
             setTimeout(() => {
               onSuccess("ok");
             }, 0);
+          }}
+          beforeUpload={(file) => {
+            const fileFormat = file.name.split(".").pop()
+            if (fileFormat != allowedFileFormet) {
+              message.error("Not allowed file format")
+              return false, Upload.LIST_IGNORE
+            }
           }}
           onChange={(info) => {
             let reader = new FileReader();

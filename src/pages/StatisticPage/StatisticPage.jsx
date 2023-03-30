@@ -21,6 +21,7 @@ import { formatDate } from "../../utils/date";
 import s from "./StatisticPage.module.css";
 import DetailsTab from "./Tabs/DetailsTab/DetailsTab";
 import GeneralTab from "./Tabs/GeneralTab/GeneralTab";
+import SearchTab from "./Tabs/SearchTab/SearchTab";
 
 function StatisticPage() {
   return (
@@ -42,7 +43,7 @@ function StatisticPage() {
           {
             key: "search",
             label: "Search",
-            // children: <ActionsTab collection={collection} />,
+            children: <SearchTab />,
           },
         ]}
       />

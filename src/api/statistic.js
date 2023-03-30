@@ -23,3 +23,23 @@ export const getCountOfWordsPerTime = async ({ time }) => {
     })
     return response.data
 }
+
+
+export const searchWordsInAllCollections = async ({
+    text,
+    searchBy,
+    partsOfSpeech,
+  }) => {
+    let params = {
+      text: text,
+      searchBy: searchBy,
+    };
+    if (partsOfSpeech.length) {
+      params.partsOfSpeech = partsOfSpeech.reduce((f, s) => `${f},${s}`);
+    }
+    const response = await API.get(`/statistic/words/search`, {
+      params: params,
+    });
+    return response.data.words;
+  };
+  
