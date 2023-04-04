@@ -1,7 +1,11 @@
 import { Divider, Typography } from "antd";
+import { useTranslation } from "react-i18next";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 import { formatDate } from "../../../../utils/date";
 
 export const FindedWord = ({ word }) => {
+  const { t } = useTranslation();
+
   return (
     <div
       style={{
@@ -21,16 +25,20 @@ export const FindedWord = ({ word }) => {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
-          Part of speech:
+          {t("findedWord.partOfSpeech") + ":"}
         </Typography.Text>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
-          {word.word.partOfSpeech}
+          {
+            getPartsOfSpeechOptionsTrans(t).find(
+              (o) => o.value === word.word.partOfSpeech
+            )?.label
+          }
         </Typography.Text>
       </div>
       <Divider />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
-          Creator:
+          {t("findedWord.creator") + ":"}
         </Typography.Text>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
           {word.creator.email}
@@ -38,7 +46,7 @@ export const FindedWord = ({ word }) => {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
-          Created at:
+          {t("findedWord.createdAt") + ":"}
         </Typography.Text>
         <Typography.Text type="secondary" style={{ fontSize: 15 }}>
           {formatDate(new Date(word.word.createdAt))}

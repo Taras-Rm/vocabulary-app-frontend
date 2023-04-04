@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
 import { getWord, updateWord } from "../../../../api/words";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 
 const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
   const { t } = useTranslation()
@@ -73,7 +73,7 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
           <Form.Item name="partOfSpeech">
             <Select
               placeholder={t("collection.wordsTab.editModal.partOfSpeechPlaceholder")}
-              options={partsOfSpeechOptions}
+              options={getPartsOfSpeechOptionsTrans(t)}
               style={{ boxShadow: "none" }}
             />
           </Form.Item>

@@ -1,4 +1,5 @@
 import ReactCountryFlag from "react-country-flag";
+import { useTranslation } from "react-i18next";
 
 export const languages = [
   {
@@ -27,7 +28,7 @@ export const languageCodeToCountryCode = (langCode) => {
     return ""
 }
 
-export const partsOfSpeechOptions = [
+const partsOfSpeechOptions = [
   {
     value: "adjective",
     label: "Adjective",
@@ -54,3 +55,13 @@ export const partsOfSpeechOptions = [
     color: "green"
   }
 ]
+
+export function getPartsOfSpeechOptionsTrans(t) {
+  return partsOfSpeechOptions.map(o => {
+    let label = t("partsOfSpeechOptions."+o.value)
+    return {
+      ...o,
+      label: label
+    }
+  })
+}

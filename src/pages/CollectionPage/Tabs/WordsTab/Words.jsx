@@ -17,7 +17,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteWord, getAllWords } from "../../../../api/words";
 import EditWordModalWindow from "./EditWordModalWindow";
 import { useParams } from "react-router";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 import { useTranslation } from "react-i18next";
 
 const Words = ({ setShowComponent }) => {
@@ -95,13 +95,15 @@ const Words = ({ setShowComponent }) => {
       dataIndex: "partOfSpeech",
       key: "partOfSpeech",
       render: (partOfSpeech) => {
+        let partsOfSpeechOptions = getPartsOfSpeechOptionsTrans(t)
+        
         return (
           <Tag
             color={
               partsOfSpeechOptions.find((p) => p.value === partOfSpeech)?.color
             }
           >
-            {partOfSpeech}
+            {partsOfSpeechOptions.find((p) => p.value === partOfSpeech)?.label}
           </Tag>
         );
       },

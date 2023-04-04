@@ -15,11 +15,7 @@ import { useQuery } from "react-query";
 const Layout = ({ children }) => {
   const { t, i18n } = useTranslation();
 
-  const {
-    data,
-    isLoading,
-    error,
-  } = useQuery("me", getAuthenticatedUser, {
+  const { data, isLoading, error } = useQuery("me", getAuthenticatedUser, {
     onSuccess: (data) => {
       i18n.changeLanguage(data.user.settings.language);
     },
@@ -30,7 +26,7 @@ const Layout = ({ children }) => {
     localStorage.removeItem("authToken");
   };
 
-  if (isLoading) return <Spin spinning/>
+  if (isLoading) return <Spin spinning />;
 
   return (
     <AntdLayout>
@@ -53,7 +49,7 @@ const Layout = ({ children }) => {
                 icon={<InfoOutlined />}
                 style={{ fontSize: "15px" }}
               >
-                {"Statistic"}
+                {t("menu.statistics")}
               </MyButton>
             )}
             <MyButton

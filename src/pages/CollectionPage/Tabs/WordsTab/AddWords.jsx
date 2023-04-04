@@ -20,7 +20,7 @@ import {
 import { useMutation, useQueryClient } from "react-query";
 import { createWords, translateWord } from "../../../../api/words";
 import { useParams } from "react-router";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 import { useTranslation } from "react-i18next";
 
 const allowedFileFormet = "txt"
@@ -85,7 +85,7 @@ const AddWords = ({ setShowComponent, collection }) => {
         return (
           <Select
             placeholder={t('collection.wordsTab.addWords.partOfSpeechPlaceholder')}
-            options={partsOfSpeechOptions}
+            options={getPartsOfSpeechOptionsTrans(t)}
             style={{ boxShadow: "none" }}
             onChange={(e) =>
               onTableFieldChange("partOfSpeech", index, e, "select")

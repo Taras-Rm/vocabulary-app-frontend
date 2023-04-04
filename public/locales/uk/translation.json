@@ -26,6 +26,7 @@
         "addRow": "Додати рядок"
     },
     "menu": {
+        "statistics": "Статистика",
         "home": "Головна",
         "newCollection": "Нова колекція",
         "settings": "Налаштування",
@@ -40,6 +41,38 @@
         "fromLanguage": "З мови",
         "toLanguage": "На мову",
         "successCreation": "Колекцію створено !"
+    },
+    "statistics": {
+        "title": "Статистика",
+        "tabs": {
+            "general": "Основне",
+            "details": "Деталі",
+            "search": "Пошук"
+       },
+       "generalTab": {
+            "users": "Користувачі",
+            "collections": "Колекції",
+            "words": "Слова"
+       },
+       "detailsTab": {
+            "wordsAddedPer": "Слів додано за:",
+            "day": "День",
+            "hour": "Годину",
+            "words": "Слова"
+       },
+       "searchTab": {
+            "title": "Шукати слова у всіх колекціях",
+            "searchPlaceholder": "Пошук ...",
+            "noResults": "Немає результатів",
+            "settings": {
+                "title": "Параметри пошуку",
+                "searchBy": "Шукати за",                
+                "word": "Словом",
+                "translation": "Перекладом",
+                "partOfSpeech": "Частина мови",
+                "partOfSpeechPlaceholder": "Обрати частини мови ..."
+            }
+       }
     },
     "collection": {
        "tabs": {
@@ -121,5 +154,17 @@
     "languages": {
         "english": "Англійська",
         "ukrainian": "Українська"
-   }
+    },
+    "findedWord": {
+        "creator": "Створив",
+        "partOfSpeech": "Частина мови",
+        "createdAt": "Створено"
+    },
+    "partsOfSpeechOptions": {
+        "noune": "Іменник",
+        "adjective": "Прикметник",
+        "verb": "Дієслово",
+        "pronoun": "Займенник",
+        "adverb": "Прислівник"
+    }
 }

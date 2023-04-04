@@ -27,6 +27,7 @@
         "addRow": "Add row"
     },
     "menu": {
+        "statistics": "Statistics",
         "home": "Home",
         "newCollection": "New collection",
         "settings": "Settings",
@@ -41,6 +42,38 @@
         "fromLanguage": "From language",
         "toLanguage": "To language",
         "successCreation": "Colletion is created !"
+    },
+    "statistics": {
+        "title": "Statistics",
+        "tabs": {
+            "general": "General",
+            "details": "Details",
+            "search": "Search"
+       },
+       "generalTab": {
+            "users": "Users",
+            "collections": "Collections",
+            "words": "Words"
+       },
+       "detailsTab": {
+            "wordsAddedPer": "Words added per:",
+            "day": "Day",
+            "hour": "Hour",
+            "words": "Words"
+       },
+       "searchTab": {
+            "title": "Search words in all collections",
+            "searchPlaceholder": "Search ...",
+            "noResults": "No results",
+            "settings": {
+                "title": "Search settings",
+                "searchBy": "Search by",                
+                "word": "Word",
+                "translation": "Translation",
+                "partOfSpeech": "Part of speech",
+                "partOfSpeechPlaceholder": "Select parts of speech ..."
+            }
+       }
     },
     "collection": {
        "tabs": {
@@ -122,5 +155,17 @@
     "languages": {
         "english": "English",
         "ukrainian": "Ukrainian"
-   }
+    },
+    "findedWord": {
+        "creator": "Creator",
+        "partOfSpeech": "Part of speech",
+        "createdAt": "Created at"
+    },
+    "partsOfSpeechOptions": {
+        "noune": "Noune",
+        "adjective": "Adjective",
+        "verb": "Verb",
+        "pronoun": "Pronoun",
+        "adverb": "Adverb"
+    }
 }

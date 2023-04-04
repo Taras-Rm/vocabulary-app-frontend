@@ -1,11 +1,13 @@
 import { Divider, Input, Select, Typography } from "antd";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { searchWordsInAllCollections } from "../../../../api/statistic";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 import { FindedWord } from "./FindedWord";
 
 function SearchTab() {
+  const { t } = useTranslation();
   const [findedWords, setFindedWords] = useState([]);
 
   const [textForSearching, setTextForSearching] = useState("");
@@ -36,14 +38,14 @@ function SearchTab() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Typography.Title style={{ marginBottom: 20 }} level={4}>
-        Search words in all collections
+        {t("statistics.searchTab.title")}
       </Typography.Title>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", height: "100vh" }}>
         <div style={{ flex: 0.6 }}>
           <Input
             value={textForSearching}
             onChange={(e) => setTextForSearching(e.target.value)}
-            placeholder={"Search ..."}
+            placeholder={t("statistics.searchTab.searchPlaceholder")}
             style={{ marginBottom: 20 }}
           />
           {findedWords?.length ? (
@@ -57,14 +59,14 @@ function SearchTab() {
                 fontSize: 20,
               }}
             >
-              No results
+              {t("statistics.searchTab.noResults")}
             </div>
           )}
         </div>
         <Divider type="vertical" style={{ height: "auto", margin: "0 20px" }} />
         <div style={{ flex: 0.4 }}>
           <Typography.Title level={5} style={{ marginBottom: 20 }}>
-            Search params
+            {t("statistics.searchTab.settings.title")}
           </Typography.Title>
           <div>
             <div
@@ -75,7 +77,7 @@ function SearchTab() {
               }}
             >
               <Typography.Text style={{ marginRight: 20, marginBottom: 5 }}>
-                Search by
+                {t("statistics.searchTab.settings.searchBy")}
               </Typography.Text>
               <Select
                 style={{ width: "100%" }}
@@ -86,11 +88,11 @@ function SearchTab() {
                 options={[
                   {
                     value: "word",
-                    label: "Word",
+                    label: t("statistics.searchTab.settings.word"),
                   },
                   {
                     value: "translation",
-                    label: "Translation",
+                    label: t("statistics.searchTab.settings.translation"),
                   },
                 ]}
               />
@@ -103,19 +105,21 @@ function SearchTab() {
               }}
             >
               <Typography.Text style={{ marginRight: 20, marginBottom: 5 }}>
-                Part of speech
+                {t("statistics.searchTab.settings.partOfSpeech")}
               </Typography.Text>
               <Select
                 mode="multiple"
                 style={{
                   width: "100%",
                 }}
-                placeholder={"Part of speech"}
+                placeholder={t(
+                  "statistics.searchTab.settings.partOfSpeechPlaceholder"
+                )}
                 defaultValue={searchSettings.partsOfSpeech}
                 onChange={(e) =>
                   setSearchSettings((s) => ({ ...s, partsOfSpeech: e }))
                 }
-                options={partsOfSpeechOptions}
+                options={getPartsOfSpeechOptionsTrans(t)}
               />
             </div>
           </div>

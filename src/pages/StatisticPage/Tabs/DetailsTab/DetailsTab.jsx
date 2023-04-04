@@ -2,8 +2,9 @@ import { Select, Spin, Typography } from "antd";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getCountOfWordsPerTime } from "../../../../api/statistic";
-import { formatDate } from "../../../../utils/date";
 import { Line } from "react-chartjs-2";
+import zoomPlugin from "chartjs-plugin-zoom";
+
 import {
   Chart,
   TimeSeriesScale,
@@ -15,6 +16,7 @@ import {
   CategoryScale,
 } from "chart.js";
 import "chartjs-adapter-date-fns";
+import { useTranslation } from "react-i18next";
 
 Chart.register(
   TimeSeriesScale,
@@ -22,11 +24,14 @@ Chart.register(
   PointElement,
   LineElement,
   CategoryScale,
+  zoomPlugin,
   Title,
   Tooltip
 );
 
 function DetailsTab() {
+  const { t } = useTranslation();
+
   const [perTime, setPerTime] = useState("day");
 
   const { data: wordsPerTime, isLoading: isLoadingWordsPerTime } = useQuery(
@@ -43,15 +48,15 @@ function DetailsTab() {
 
   return (
     <div>
-      <div style={{display: "flex", marginBottom: 30}}>
+      <div style={{ display: "flex", marginBottom: 30 }}>
         <Typography.Title level={4} style={{ marginRight: 10 }}>
-          Words added per:
+          {t("statistics.detailsTab.wordsAddedPer")}
         </Typography.Title>
         <Select
           value={perTime}
           options={[
-            { value: "hour", label: "Hour" },
-            { value: "day", label: "Day" },
+            { value: "hour", label: t("statistics.detailsTab.hour") },
+            { value: "day", label: t("statistics.detailsTab.day") },
           ]}
           onChange={(e) => setPerTime(e)}
           style={{ width: 100 }}
@@ -61,6 +66,23 @@ function DetailsTab() {
       <div style={{ width: "100%", height: 400 }}>
         <Line
           options={{
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+              },
+              zoom: {
+                zoom: {
+                  pinch: {
+                    enabled: true, // Enable pinch zooming
+                  },
+                  wheel: {
+                    enabled: true, // Enable wheel zooming
+                  },
+                  mode: "xy",
+                },
+              },
+            },
             maintainAspectRatio: false,
             scales: {
               x: {
@@ -89,10 +111,10 @@ function DetailsTab() {
             labels: wordsPerTime.map((w) => w.date),
             datasets: [
               {
-                label: "Hello",
+                label: t("statistics.detailsTab.words"),
                 data: wordsPerTime.map((w) => w.count),
-                backgroundColor: "#1890ff",
-                borderColor: "#1890ff",
+                backgroundColor: "purple",
+                borderColor: "purple",
               },
             ],
           }}

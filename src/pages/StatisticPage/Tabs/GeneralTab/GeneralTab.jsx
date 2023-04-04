@@ -1,5 +1,6 @@
 import { Spin, Typography } from "antd";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import {
   getAllWordsCount,
@@ -8,6 +9,8 @@ import {
 } from "../../../../api/statistic";
 
 function GeneralTab() {
+  const { t } = useTranslation();
+
   const { data: users, isLoading: isLoadingUsers } = useQuery(
     ["statistic", "users"],
     getUsers,
@@ -38,8 +41,7 @@ function GeneralTab() {
     }
   );
 
-  if (isLoadingUsers || isLoadingCollections)
-    return <Spin spinning />;
+  if (isLoadingUsers || isLoadingCollections) return <Spin spinning />;
 
   return (
     <div
@@ -60,7 +62,9 @@ function GeneralTab() {
           marginBottom: 20,
         }}
       >
-        <Typography.Text style={{ marginRight: 20 }}>Users</Typography.Text>
+        <Typography.Text style={{ marginRight: 20 }}>
+          {t("statistics.generalTab.users")}
+        </Typography.Text>
         <Typography.Text>{users.length}</Typography.Text>
       </div>
       <div
@@ -72,7 +76,7 @@ function GeneralTab() {
         }}
       >
         <Typography.Text style={{ marginRight: 20 }}>
-          Collections
+          {t("statistics.generalTab.collections")}
         </Typography.Text>
         <Typography.Text>{collections.length}</Typography.Text>
       </div>
@@ -83,7 +87,9 @@ function GeneralTab() {
           alignItems: "center",
         }}
       >
-        <Typography.Text style={{ marginRight: 20 }}>Words</Typography.Text>
+        <Typography.Text style={{ marginRight: 20 }}>
+          {t("statistics.generalTab.words")}
+        </Typography.Text>
         <Typography.Text>{wordsCount}</Typography.Text>
       </div>
     </div>
