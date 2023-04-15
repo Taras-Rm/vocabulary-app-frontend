@@ -116,10 +116,10 @@ const AddWords = ({ setShowComponent, collection }) => {
               icon={<DeleteOutlined />}
               onClick={() => onTableFieldRemove(index)}
             />
-            <Button
+            {/* <Button
               icon={<TranslationOutlined />}
               onClick={() => onTranslateWordClick(record.word, index)}
-            />
+            /> */}
           </div>
         );
       },

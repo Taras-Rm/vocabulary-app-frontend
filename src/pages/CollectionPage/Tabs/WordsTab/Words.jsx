@@ -156,7 +156,6 @@ const Words = ({ setShowComponent }) => {
     {
       label: t("buttons.addWords"),
       key: "addWords",
-      disabled: true,
     },
   ];
 
