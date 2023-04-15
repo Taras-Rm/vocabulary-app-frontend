@@ -1,6 +1,7 @@
 import API from "./api";
 
 export const login = async ({ email, password }) => {
+  console.log(process.env.REACT_APP_API_URL)
   const response = await API.post("/user/login", {
     email,
     password,

@@ -18,7 +18,7 @@ const SearchTab = () => {
 
   const [textForSearching, setTextForSearching] = useState("");
   const [searchBy, setSearchBy] = useState("word");
-  const [partsOfSpeech, setPartsOfSpeech] = useState(["noune"]);
+  const [partsOfSpeech, setPartsOfSpeech] = useState([]);
   const [date, setDate] = useState(null);
 
   useQuery(

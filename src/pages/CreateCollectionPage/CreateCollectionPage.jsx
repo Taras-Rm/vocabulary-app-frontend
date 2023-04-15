@@ -4,9 +4,7 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { useMutation, useQueryClient } from "react-query";
 import { useForm } from "antd/es/form/Form";
 import { createCollection } from "../../api/collections";
-import { useMemo } from "react";
-import { languages, languageToCountry } from "../../utils/collections";
-import ReactCountryFlag from "react-country-flag";
+import { languages } from "../../utils/collections";
 import { useTranslation } from "react-i18next";
 
 function CreateCollectionPage() {

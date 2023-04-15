@@ -52,7 +52,7 @@ function CollectionPage() {
         }}
       >
         <Typography.Title level={1}>{collection.name}</Typography.Title>
-        <div>
+        <div style={{display: "flex", alignItems: "center"}}>
           <ReactCountryFlag
             style={{ fontSize: 40 }}
             countryCode={languageCodeToCountryCode(collection.langFrom)}

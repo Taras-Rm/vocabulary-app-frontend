@@ -83,12 +83,15 @@ const Words = ({ setShowComponent }) => {
       title: t("collection.wordsTab.table.word"),
       dataIndex: "word",
       key: "word",
-      render: (word) => word,
+      render: (word) => word?.charAt(0).toUpperCase() + word?.slice(1),
     },
     {
       title: t("collection.wordsTab.table.translation"),
       dataIndex: "translation",
       key: "translation",
+      render: (translation) => {
+        return translation?.charAt(0).toUpperCase() + translation?.slice(1)
+      }
     },
     {
       title: t("collection.wordsTab.table.partOfSpeech"),
