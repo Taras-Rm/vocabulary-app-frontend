@@ -18,9 +18,9 @@ const Layout = ({ children }) => {
     onSuccess: (data) => {
       i18n.changeLanguage(data.user.settings.language);
     },
-    // onError: () => {
-    //   window.location.href ="/login"
-    // },
+    onError: () => {
+      window.location.href ="/login"
+    },
     retry: false,
   });
 
