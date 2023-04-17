@@ -17,7 +17,7 @@ const Root = () => {
       <Route exact path={"/registration"} component={RegistrationPage} />
       <Layout>
         <Switch>
-          <PrivateRoute key={"/"} exact path={"/"} component={HomePage} />
+          <PrivateRoute exact path={"/"} component={HomePage} />
           <PrivateRoute
             exact
             path={"/createCollection"}

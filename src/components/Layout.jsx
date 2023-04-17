@@ -1,4 +1,4 @@
-import { Layout as AntdLayout, Select, Spin } from "antd";
+import { Layout as AntdLayout, Spin } from "antd";
 import {
   HomeOutlined,
   PlusCircleOutlined,
@@ -8,7 +8,6 @@ import {
 } from "@ant-design/icons";
 import MyButton from "./MyButton/MyButton";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import { getAuthenticatedUser } from "../api/auth";
 import { useQuery } from "react-query";
 
@@ -19,7 +18,10 @@ const Layout = ({ children }) => {
     onSuccess: (data) => {
       i18n.changeLanguage(data.user.settings.language);
     },
-    // retry: false,
+    // onError: () => {
+    //   window.location.href ="/login"
+    // },
+    retry: false,
   });
 
   const handleLogoutClick = () => {

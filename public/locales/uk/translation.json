@@ -2,6 +2,7 @@
     "collectionCard": {
         "words": "слова",
         "word": "слово",
+        "createdAt": "Створено",
 
         "editModal": {
             "text": "Редагувати колекцію",

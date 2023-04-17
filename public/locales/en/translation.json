@@ -2,6 +2,7 @@
     "collectionCard": {
         "words": "words",
         "word": "word",
+        "createdAt": "Created at",
 
         "editModal": {
             "text": "Edit collection",

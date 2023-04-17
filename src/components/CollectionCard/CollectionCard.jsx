@@ -63,12 +63,12 @@ export const CollectionCard = (props) => {
   };
 
   const selectWordOutFormat = (count) => {
-    if(count === 1) {
-      return "collectionCard.word"
+    if (count === 1) {
+      return "collectionCard.word";
     } else {
-      return "collectionCard.words"
+      return "collectionCard.words";
     }
-  }
+  };
 
   return (
     <div className={s.collectionCard}>
@@ -82,7 +82,10 @@ export const CollectionCard = (props) => {
             }}
           >
             <Link to={generatePath("collection/" + id)}>
-              <Typography.Title level={5} style={{ margin: 0 }}>
+              <Typography.Title
+                level={5}
+                className={s.collectionCard_top_title}
+              >
                 {name}
               </Typography.Title>
             </Link>
@@ -91,12 +94,14 @@ export const CollectionCard = (props) => {
             </Dropdown>
           </div>
           <Typography.Text>{words.length} </Typography.Text>
-          <Typography.Text>{t(selectWordOutFormat(words.length))}</Typography.Text>
+          <Typography.Text>
+            {t(selectWordOutFormat(words.length))}
+          </Typography.Text>
         </div>
       </div>
       <div className={s.collectionCard_middle}></div>
       <div className={s.collectionCard_bottom}>
-        <Typography.Text>Created at:</Typography.Text>
+        <Typography.Text>{t("collectionCard.createdAt")}:</Typography.Text>
         <Typography.Text type="secondary">
           {formatDate(new Date(Date.parse(createdAt)))}
         </Typography.Text>
