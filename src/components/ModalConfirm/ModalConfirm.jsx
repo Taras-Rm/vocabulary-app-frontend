@@ -1,4 +1,5 @@
 import { Button, Modal } from "antd";
+import { useTranslation } from "react-i18next";
 
 const ModalConfirm = ({
   title,
@@ -6,6 +7,8 @@ const ModalConfirm = ({
   setShowDeleteConfirm,
   deleteHandler,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       title={title}
@@ -16,7 +19,7 @@ const ModalConfirm = ({
       destroyOnClose
     >
       {
-        <div style={{display: "flex", justifyContent: "flex-end"}}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             onClick={deleteHandler}
             style={{
@@ -26,10 +29,10 @@ const ModalConfirm = ({
               color: "white",
               textTransform: "uppercase",
               outline: "none",
-              marginTop: 20
+              marginTop: 20,
             }}
           >
-            Delete
+            {t("buttons.delete")}
           </Button>
         </div>
       }

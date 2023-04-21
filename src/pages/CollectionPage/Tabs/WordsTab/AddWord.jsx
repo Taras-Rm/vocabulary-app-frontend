@@ -13,9 +13,12 @@ import { useMutation, useQueryClient } from "react-query";
 import { useForm } from "antd/es/form/Form";
 import { createWord } from "../../../../api/words";
 import { useParams } from "react-router";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
+import { useTranslation } from "react-i18next";
 
 const AddWord = ({ setShowComponent }) => {
+  const { t } = useTranslation();
+
   const params = useParams();
   const queryClient = useQueryClient();
 
@@ -24,7 +27,7 @@ const AddWord = ({ setShowComponent }) => {
   const createWordMutation = useMutation(createWord, {
     onSuccess: () => {
       queryClient.invalidateQueries(["words", params.collectionId]);
-      message.success("Word is added !");
+      message.success(t("collection.wordsTab.addWord.wordAddedSuccess"));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -52,7 +55,7 @@ const AddWord = ({ setShowComponent }) => {
           padding: "0px 10px",
         }}
       >
-        <Tooltip title={"Back to words"}>
+        <Tooltip title={t("collection.wordsTab.addWord.backToWordsBtn")}>
           <Button
             icon={
               <ArrowLeftOutlined
@@ -66,37 +69,40 @@ const AddWord = ({ setShowComponent }) => {
         </Tooltip>
 
         <Typography.Title level={2} style={{ margin: 0, marginLeft: 10 }}>
-          Add word
+          {t("collection.wordsTab.addWord.title")}
         </Typography.Title>
       </div>
       <Form onFinish={createWordHandler} form={form}>
-        <Form.Item name="word">
+        <Form.Item name="word" rules={[{ required: true }]}>
           <Input
-            placeholder="Word"
+            placeholder={t("collection.wordsTab.addWord.wordPlaceholder")}
             className={s.input}
-            style={{ boxShadow: "none" }}
+            style={{ boxShadow: "none", marginBottom: 0 }}
+          />
+        </Form.Item>
+        <Form.Item name="translation" rules={[{ required: true }]}>
+          <Input
+            placeholder={t(
+              "collection.wordsTab.addWord.translationPlaceholder"
+            )}
+            className={s.input}
+            style={{ boxShadow: "none", marginBottom: 0 }}
           />
         </Form.Item>
         <Form.Item name="partOfSpeech">
           <Select
-            placeholder="Part of speech"
-            options={partsOfSpeechOptions}
-            style={{ boxShadow: "none" }}
-          />
-        </Form.Item>
-
-        <Form.Item name="translation">
-          <Input
-            placeholder="Translation"
-            className={s.input}
-            style={{ boxShadow: "none" }}
+            placeholder={t(
+              "collection.wordsTab.addWord.partOfSpeechPlaceholder"
+            )}
+            options={getPartsOfSpeechOptionsTrans(t)}
+            style={{ boxShadow: "none", marginBottom: 0 }}
           />
         </Form.Item>
         <Form.Item name="scentance">
           <Input
-            placeholder="Scentance"
+            placeholder={t("collection.wordsTab.addWord.scentancePlaceholder")}
             className={s.input}
-            style={{ boxShadow: "none" }}
+            style={{ boxShadow: "none", marginBottom: 0 }}
           />
         </Form.Item>
 
@@ -113,7 +119,7 @@ const AddWord = ({ setShowComponent }) => {
             }}
             htmlType="submit"
           >
-            Add
+            {t("buttons.add")}
           </Button>
         </Form.Item>
       </Form>

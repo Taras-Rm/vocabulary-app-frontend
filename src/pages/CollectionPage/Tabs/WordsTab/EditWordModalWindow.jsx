@@ -1,19 +1,23 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
 import { getWord, updateWord } from "../../../../api/words";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 
 const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
+  const { t } = useTranslation()
+
   const queryClient = useQueryClient();
 
   const [form] = useForm();
 
   useEffect(() => {
-    if (editWordId) {
+    if (editWordId && collectionId) {
       getWordMutation.mutate({
         id: editWordId,
+        collectionId: collectionId
       });
     }
   }, [editWordId]);
@@ -31,7 +35,7 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
     onSuccess: () => {
       setEditWordId(null);
       queryClient.invalidateQueries(["words", collectionId]);
-      message.success("Word is updated !");
+      message.success(t("collection.wordsTab.editModal.success"));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -41,6 +45,7 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
   const updateWordHandler = (values) => {
     updateWordMutation.mutate({
       id: editWordId,
+      collectionId: collectionId,
       word: values.word,
       translation: values.translation,
       partOfSpeech: values.partOfSpeech,
@@ -61,26 +66,26 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
         <Form form={form} onFinish={updateWordHandler} preserve>
           <Form.Item name="word">
             <Input
-              placeholder="Word"
+              placeholder={t("collection.wordsTab.editModal.namePlaceholder")}
               style={{ boxShadow: "none" }}
             />
           </Form.Item>
           <Form.Item name="partOfSpeech">
             <Select
-              placeholder="Part of speech"
-              options={partsOfSpeechOptions}
+              placeholder={t("collection.wordsTab.editModal.partOfSpeechPlaceholder")}
+              options={getPartsOfSpeechOptionsTrans(t)}
               style={{ boxShadow: "none" }}
             />
           </Form.Item>
           <Form.Item name="translation">
             <Input
-              placeholder="Translation"
+              placeholder={t("collection.wordsTab.editModal.translationPlaceholder")}
               style={{ boxShadow: "none" }}
             />
           </Form.Item>
           <Form.Item name="scentance">
             <Input
-              placeholder="Scentance"
+              placeholder={t("collection.wordsTab.editModal.examplePlaceholder")}
               style={{ boxShadow: "none" }}
             />
           </Form.Item>
@@ -97,7 +102,7 @@ const EditWordModalWindow = ({ setEditWordId, editWordId, collectionId }) => {
                 outline: "none",
               }}
             >
-              Update
+              {t("buttons.update")}
             </Button>
           </Form.Item>
         </Form>

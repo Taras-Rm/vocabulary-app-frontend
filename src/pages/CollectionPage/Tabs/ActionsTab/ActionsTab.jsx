@@ -1,23 +1,25 @@
-import { useQueryClient } from "react-query";
 import { generateCollectionPdfFile } from "../../../../api/collections";
 import { Button, message } from "antd";
 import { useMutation } from "react-query";
 import { useParams } from "react-router";
 import { useState } from "react";
+import { downloadAttachedFile } from "../../../../utils/downloadFile";
+import { useTranslation } from "react-i18next";
 
 const ActionsTab = ({ collection }) => {
-  const queryClient = useQueryClient();
+  const { t } = useTranslation();
+
   const params = useParams();
 
-  const [isFileGenerationLoading, setIsFileGenerationLoading] = useState(false)
+  const [isFileGenerationLoading, setIsFileGenerationLoading] = useState(false);
 
   const generateCollectionPdfFileMutation = useMutation(
     generateCollectionPdfFile,
     {
-      onSuccess: () => {
-        setIsFileGenerationLoading(false)
-        queryClient.invalidateQueries(["collection", params.collectionId]);
-        message.success("File is generated");
+      onSuccess: (data) => {
+        setIsFileGenerationLoading(false);
+        downloadAttachedFile(data);
+        message.success(t("collection.actionsTab.fileIsDownloadedSuccess"));
       },
       onError: (error) => {
         message.error(error.response.data.message);
@@ -26,7 +28,7 @@ const ActionsTab = ({ collection }) => {
   );
 
   const onGeneratePdfFileClick = () => {
-    setIsFileGenerationLoading(true)
+    setIsFileGenerationLoading(true);
     generateCollectionPdfFileMutation.mutate({
       collectionId: params.collectionId,
     });
@@ -34,14 +36,12 @@ const ActionsTab = ({ collection }) => {
 
   return (
     <div>
-      <Button loading={isFileGenerationLoading} onClick={() => onGeneratePdfFileClick(collection.id)}>
-        {collection?.pdfFileUrl ? "Regenerate pdf file" : "Generate pdf file"}
+      <Button
+        loading={isFileGenerationLoading}
+        onClick={() => onGeneratePdfFileClick(collection.id)}
+      >
+        {t("collection.actionsTab.downloadPdfFile")}
       </Button>
-      {collection?.pdfFileUrl && (
-        <Button type="link" href={collection?.pdfFileUrl}>
-          Download pdf file
-        </Button>
-      )}
     </div>
   );
 };

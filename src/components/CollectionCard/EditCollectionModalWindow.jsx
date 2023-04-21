@@ -1,14 +1,17 @@
-import { Button, Form, Input, message, Modal, Select } from "antd";
+import { Button, Form, Input, message, Modal } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "react-query";
 import { getCollection, updateCollection } from "../../api/collections";
 
 const EditCollectionModalWindow = ({
   showEditCollectionModal,
   setShowEditCollectionModal,
-  collectionId
+  collectionId,
 }) => {
+  const { t } = useTranslation();
+
   const queryClient = useQueryClient();
 
   const [form] = useForm();
@@ -34,7 +37,7 @@ const EditCollectionModalWindow = ({
     onSuccess: () => {
       setShowEditCollectionModal(null);
       queryClient.invalidateQueries(["collections"]);
-      message.success("Collection is updated !");
+      message.success(t("collectionCard.editModal.success"));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -50,7 +53,7 @@ const EditCollectionModalWindow = ({
 
   return (
     <Modal
-      title="Edit collection"
+      title={t("collectionCard.editModal.text")}
       closable
       open={showEditCollectionModal}
       footer={false}
@@ -60,7 +63,7 @@ const EditCollectionModalWindow = ({
       {
         <Form form={form} onFinish={updateCollectionHandler} preserve>
           <Form.Item name="name">
-            <Input placeholder="Name" style={{ boxShadow: "none" }} />
+            <Input placeholder={t("collectionCard.editModal.namePlaceholder")} style={{ boxShadow: "none" }} />
           </Form.Item>
 
           <Form.Item style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -75,7 +78,7 @@ const EditCollectionModalWindow = ({
                 outline: "none",
               }}
             >
-              Update
+              {t("buttons.update")}
             </Button>
           </Form.Item>
         </Form>

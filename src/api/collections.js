@@ -21,8 +21,15 @@ export const getCollection = async ({ collectionId }) => {
 };
 
 export const generateCollectionPdfFile = async ({ collectionId }) => {
-  const response = await API.post(`/collection/${collectionId}/generatePdf`);
-  return response.data;
+  const response = await API.post(
+    `/collection/${collectionId}/generatePdf`,
+    {},
+    {
+      responseType: "blob",
+    }
+  );
+
+  return { data: response.data, headers: response.headers };
 };
 
 export const updateCollection = async ({ id, name }) => {

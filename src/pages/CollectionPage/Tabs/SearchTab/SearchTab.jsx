@@ -1,19 +1,24 @@
 import { Divider, Input, DatePicker, Select, Typography } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router";
 import { searchWordsInCollection } from "../../../../api/collections";
-import { partsOfSpeechOptions } from "../../../../utils/collections";
+import {
+  getPartsOfSpeechOptionsTrans,
+} from "../../../../utils/collections";
 import { FindedWord } from "./FindedWord";
 
-const SearchTab = ({ collection }) => {
+const SearchTab = () => {
+  const { t } = useTranslation();
+
   const params = useParams();
 
   const [findedWords, setFindedWords] = useState([]);
 
   const [textForSearching, setTextForSearching] = useState("");
   const [searchBy, setSearchBy] = useState("word");
-  const [partsOfSpeech, setPartsOfSpeech] = useState(["noune"]);
+  const [partsOfSpeech, setPartsOfSpeech] = useState([]);
   const [date, setDate] = useState(null);
 
   useQuery(
@@ -46,22 +51,33 @@ const SearchTab = ({ collection }) => {
   );
 
   return (
-    <div style={{ padding: "5px 0px", display: "flex" }}>
+    <div style={{ padding: "5px 0px", display: "flex", height: "100vh" }}>
       <div style={{ flex: 0.6 }}>
         <Input
           value={textForSearching}
           onChange={(e) => setTextForSearching(e.target.value)}
-          placeholder="Search ..."
+          placeholder={t("collection.searchTab.searchPlaceholder")}
           style={{ marginBottom: 20 }}
         />
-        {findedWords?.length ? findedWords.map((w) => (
-          <FindedWord word={w} />
-        )) : <div style={{textAlign: "center", paddingTop: 30, color: "grey", fontSize: 20}}>No results</div>}
+        {findedWords?.length ? (
+          findedWords.map((w) => <FindedWord word={w} />)
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              paddingTop: 30,
+              color: "grey",
+              fontSize: 20,
+            }}
+          >
+            {t("collection.searchTab.noResults")}
+          </div>
+        )}
       </div>
       <Divider type="vertical" style={{ height: "auto", margin: "0 20px" }} />
       <div style={{ flex: 0.4 }}>
         <Typography.Title level={4} style={{ marginBottom: 20 }}>
-          Search settings
+          {t("collection.searchTab.settings.title")}
         </Typography.Title>
         <div>
           <div
@@ -72,7 +88,7 @@ const SearchTab = ({ collection }) => {
             }}
           >
             <Typography.Text style={{ marginRight: 20, marginBottom: 5 }}>
-              Search by
+              {t("collection.searchTab.settings.searchBy")}
             </Typography.Text>
             <Select
               style={{ width: "100%" }}
@@ -81,11 +97,11 @@ const SearchTab = ({ collection }) => {
               options={[
                 {
                   value: "word",
-                  label: "Word",
+                  label: t("collection.searchTab.settings.word"),
                 },
                 {
                   value: "translation",
-                  label: "Translation",
+                  label: t("collection.searchTab.settings.translation"),
                 },
               ]}
             />
@@ -98,17 +114,19 @@ const SearchTab = ({ collection }) => {
             }}
           >
             <Typography.Text style={{ marginRight: 20, marginBottom: 5 }}>
-              Part of speech
+              {t("collection.searchTab.settings.partOfSpeech")}
             </Typography.Text>
             <Select
               mode="multiple"
               style={{
                 width: "100%",
               }}
-              placeholder="Select parts of speach ..."
+              placeholder={t(
+                "collection.searchTab.settings.partOfSpeechPlaceholder"
+              )}
               defaultValue={partsOfSpeech}
               onChange={(e) => setPartsOfSpeech(e)}
-              options={partsOfSpeechOptions}
+              options={getPartsOfSpeechOptionsTrans(t)}
             />
           </div>
         </div>

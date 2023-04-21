@@ -1,11 +1,11 @@
-.loginPage {
+.registrationPage {
     display: flex;
     justify-content: center;
 
     padding-top: 130px;
 }
 
-.loginContent {
+.registrationContent {
     width: 400px;
 
     text-align: center;

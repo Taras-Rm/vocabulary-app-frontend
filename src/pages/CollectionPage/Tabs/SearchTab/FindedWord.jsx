@@ -1,6 +1,10 @@
 import { Typography } from "antd";
+import { useTranslation } from "react-i18next";
+import { getPartsOfSpeechOptionsTrans } from "../../../../utils/collections";
 
 export const FindedWord = ({ word }) => {
+  const { t } = useTranslation();
+
   return (
     <div
       style={{
@@ -19,7 +23,11 @@ export const FindedWord = ({ word }) => {
         </Typography.Text>
       </div>
       <Typography.Text type="secondary" style={{ fontSize: 15 }}>
-        {word.partOfSpeech}
+        {
+          getPartsOfSpeechOptionsTrans(t).find(
+            (o) => o.value === word.partOfSpeech
+          )?.label
+        }
       </Typography.Text>
     </div>
   );

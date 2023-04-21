@@ -1,0 +1,171 @@
+{
+    "collectionCard": {
+        "words": "слова",
+        "word": "слово",
+        "createdAt": "Створено",
+
+        "editModal": {
+            "text": "Редагувати колекцію",
+            "success": "Колекцію оновлено !",
+            "namePlaceholder": "Назва"
+        },
+        "deleteModal": {
+            "text": "Ви справді хочете видалити",
+            "success": "Колекцію видалено !"
+        }
+    },
+    "buttons": {
+        "delete": "Видалити",
+        "edit": "Редагувати",
+        "update": "Оновити",
+        "create": "Створити",
+        "addWords": "Додати слова",
+        "addWord": "Додати слово",
+        "yes": "Так",
+        "no": "Ні",
+        "add": "Додати",
+        "addRow": "Додати рядок"
+    },
+    "menu": {
+        "statistics": "Статистика",
+        "home": "Головна",
+        "newCollection": "Нова колекція",
+        "settings": "Налаштування",
+        "logout": "Вихід"
+    },
+    "home": {
+        "collectionsTitle": "Колекції"
+    },
+    "createCollection": {
+        "title": "Створити колекцію",
+        "namePlaceholder": "Назва",
+        "fromLanguage": "З мови",
+        "toLanguage": "На мову",
+        "successCreation": "Колекцію створено !"
+    },
+    "statistics": {
+        "title": "Статистика",
+        "tabs": {
+            "general": "Основне",
+            "details": "Деталі",
+            "search": "Пошук"
+       },
+       "generalTab": {
+            "users": "Користувачі",
+            "collections": "Колекції",
+            "words": "Слова"
+       },
+       "detailsTab": {
+            "wordsAddedPer": "Слів додано за:",
+            "day": "День",
+            "hour": "Годину",
+            "words": "Слова"
+       },
+       "searchTab": {
+            "title": "Шукати слова у всіх колекціях",
+            "searchPlaceholder": "Пошук ...",
+            "noResults": "Немає результатів",
+            "settings": {
+                "title": "Параметри пошуку",
+                "searchBy": "Шукати за",                
+                "word": "Словом",
+                "translation": "Перекладом",
+                "partOfSpeech": "Частина мови",
+                "partOfSpeechPlaceholder": "Обрати частини мови ..."
+            }
+       }
+    },
+    "collection": {
+       "tabs": {
+            "words": "Слова",
+            "search": "Пошук",
+            "actions": "Дії"
+       },
+       "wordsTab": {
+            "title": "Слова",
+            "table": {
+                "word": "Слово",
+                "translation": "Переклад",
+                "partOfSpeech": "Частина мови",
+                "actions": "Дії"
+            },
+            "deleteModal": {
+                "title": "Видалити слово ?",
+                "text": "Ви хочете видалити слово - ",
+                "success": "Слово видалено !"
+            },
+            "editModal": {
+                "title": "Редагувати",
+                "translationPlaceholder": "Переклад",
+                "examplePlaceholder": "Речення",
+                "namePlaceholder": "Назва",
+                "partOfSpeechPlaceholder": "Переклад",
+                "success": "Слово оновлено !"
+            },
+            "addWord": {
+                "title": "Додати слово",
+                "wordPlaceholder": "Слово",
+                "partOfSpeechPlaceholder": "Частина мови",
+                "translationPlaceholder": "Переклад",
+                "scentancePlaceholder": "Речення",
+                "wordAddedSuccess": "Слово додано !",
+                "backToWordsBtn": "Повернутися до всіх слів"
+            },
+            "addWords": {
+                "title": "Додати слова",
+                "draggerTitle": "Натисність або пересуньте сюди файл, щоб завантажити",
+                "draggerSubtitle": "Підтримується завантаження одного файлу. Вам потрібно обрати текстовий файл. Слова повинні бути написані одне на рядок.",
+                "table": {
+                    "word": "Слово",
+                    "translation": "Переклад",
+                    "partOfSpeech": "Частина мови"
+                },
+                "partOfSpeechPlaceholder": "Частина мови",
+                "addWordsSuccess": "Слова додано !",
+                "backToWordsBtn": "Повернутися до всіх слів",
+                "addWordsWarn": "Потрібно додати слова",
+                "addOriginTranslationWarn": "Потрібно додати слово та переклад для кожного рядка"
+            }
+       },
+       "searchTab": {
+            "searchPlaceholder": "Пошук ...",
+            "noResults": "Немає результатів",
+            "settings": {
+                "title": "Налаштування пошуку",
+                "searchBy": "Шукати за",
+                "namePlaceholder": "Назва",
+
+                "word": "Слово",
+                "translation": "Переклад",
+
+                "partOfSpeech": "Частина мови",
+                "partOfSpeechPlaceholder": "Обрати частини мови ..."
+            }
+       },
+       "actionsTab": {
+            "downloadPdfFile": "Завантажити pdf файл",
+            "fileIsDownloadedSuccess": "Файл завантажено !"
+       }
+    },
+    "settings": {
+        "title": "Налаштування",
+        "language": "Мова",
+        "languageUpdateSuccess": "Мову оновлено !"
+    },
+    "languages": {
+        "english": "Англійська",
+        "ukrainian": "Українська"
+    },
+    "findedWord": {
+        "creator": "Створив",
+        "partOfSpeech": "Частина мови",
+        "createdAt": "Створено"
+    },
+    "partsOfSpeechOptions": {
+        "noune": "Іменник",
+        "adjective": "Прикметник",
+        "verb": "Дієслово",
+        "pronoun": "Займенник",
+        "adverb": "Прислівник"
+    }
+}

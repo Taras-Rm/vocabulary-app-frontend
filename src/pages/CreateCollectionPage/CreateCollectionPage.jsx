@@ -4,11 +4,12 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { useMutation, useQueryClient } from "react-query";
 import { useForm } from "antd/es/form/Form";
 import { createCollection } from "../../api/collections";
-import { useMemo } from "react";
-import { languages, languageToCountry } from "../../utils/collections";
-import ReactCountryFlag from "react-country-flag";
+import { languages } from "../../utils/collections";
+import { useTranslation } from "react-i18next";
 
 function CreateCollectionPage() {
+  const { t } = useTranslation();
+
   const queryClient = useQueryClient();
   const [form] = useForm();
 
@@ -16,7 +17,7 @@ function CreateCollectionPage() {
     onSuccess: () => {
       queryClient.invalidateQueries(["collections"]);
 
-      message.success("Collection is added !");
+      message.success(t("createCollection.successCreation"));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -34,11 +35,13 @@ function CreateCollectionPage() {
 
   return (
     <div className={s.addCollectionPage}>
-      <Typography.Title level={2}>Create collection</Typography.Title>
+      <Typography.Title level={2}>
+        {t("createCollection.title")}
+      </Typography.Title>
       <Form onFinish={createCollectionHandler} form={form}>
         <Form.Item name="name" rules={[{ required: true }]}>
           <Input
-            placeholder="Name"
+            placeholder={t("createCollection.namePlaceholder")}
             className={s.input}
             style={{ boxShadow: "none" }}
           />
@@ -50,10 +53,15 @@ function CreateCollectionPage() {
             style={{ width: "40%" }}
             rules={[{ required: true }]}
           >
-            <Select placeholder="From language" showSearch>
+            <Select placeholder={t("createCollection.fromLanguage")} showSearch>
               {languages.map((l) => (
                 <Select.Option value={l.code}>
-                  {l.description} {l.flag}
+                  {l.code == "uk"
+                    ? t("languages.ukrainian")
+                    : l.code == "en"
+                    ? t("languages.english")
+                    : ""}
+                  {l.flag}
                 </Select.Option>
               ))}
             </Select>
@@ -64,10 +72,15 @@ function CreateCollectionPage() {
             style={{ width: "40%" }}
             rules={[{ required: true }]}
           >
-            <Select placeholder="To language" showSearch>
+            <Select placeholder={t("createCollection.toLanguage")} showSearch>
               {languages.map((l) => (
                 <Select.Option value={l.code}>
-                  {l.description} {l.flag}
+                  {l.code == "uk"
+                    ? t("languages.ukrainian")
+                    : l.code == "en"
+                    ? t("languages.english")
+                    : ""}
+                  {l.flag}
                 </Select.Option>
               ))}
             </Select>
@@ -87,7 +100,7 @@ function CreateCollectionPage() {
             }}
             htmlType="submit"
           >
-            Create
+            {t("buttons.create")}
           </Button>
         </Form.Item>
       </Form>

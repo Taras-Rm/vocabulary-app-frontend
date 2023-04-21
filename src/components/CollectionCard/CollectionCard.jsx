@@ -1,4 +1,4 @@
-import { Button, Dropdown, message, Space, Typography } from "antd";
+import { Dropdown, message, Typography } from "antd";
 import { Link, generatePath } from "react-router-dom";
 import s from "./CollectionCard.module.css";
 import { MoreOutlined } from "@ant-design/icons";
@@ -7,9 +7,13 @@ import EditCollectionModalWindow from "./EditCollectionModalWindow";
 import { deleteCollection } from "../../api/collections";
 import ModalConfirm from "../ModalConfirm/ModalConfirm";
 import { useMutation, useQueryClient } from "react-query";
+import { useTranslation } from "react-i18next";
+import { formatDate } from "../../utils/date";
 
 export const CollectionCard = (props) => {
-  const { id, name, words } = props;
+  const { t } = useTranslation();
+
+  const { id, name, words, createdAt } = props;
   const queryClient = useQueryClient();
 
   const [showEditCollectionModal, setShowEditCollectionModal] = useState(false);
@@ -26,11 +30,11 @@ export const CollectionCard = (props) => {
 
   const items = [
     {
-      label: "Edit",
+      label: t("buttons.edit"),
       key: "edit",
     },
     {
-      label: "Delete",
+      label: t("buttons.delete"),
       key: "delete",
       danger: true,
     },
@@ -45,7 +49,7 @@ export const CollectionCard = (props) => {
     onSuccess: () => {
       setShowDeleteCollectionConfirm(null);
       queryClient.invalidateQueries(["collections"]);
-      message.success("Collection is deleted !");
+      message.success(t("collectionCard.deleteModal.success"));
     },
     onError: (error) => {
       message.error(error.response.data.message);
@@ -56,6 +60,14 @@ export const CollectionCard = (props) => {
     deleteCollectionMutation.mutate({
       id: id,
     });
+  };
+
+  const selectWordOutFormat = (count) => {
+    if (count === 1) {
+      return "collectionCard.word";
+    } else {
+      return "collectionCard.words";
+    }
   };
 
   return (
@@ -70,7 +82,10 @@ export const CollectionCard = (props) => {
             }}
           >
             <Link to={generatePath("collection/" + id)}>
-              <Typography.Title level={5} style={{ margin: 0 }}>
+              <Typography.Title
+                level={5}
+                className={s.collectionCard_top_title}
+              >
                 {name}
               </Typography.Title>
             </Link>
@@ -78,19 +93,26 @@ export const CollectionCard = (props) => {
               <MoreOutlined style={{ cursor: "pointer", fontSize: 25 }} />
             </Dropdown>
           </div>
-
-          <Typography.Text>{words.length} words</Typography.Text>
+          <Typography.Text>{words.length} </Typography.Text>
+          <Typography.Text>
+            {t(selectWordOutFormat(words.length))}
+          </Typography.Text>
         </div>
       </div>
       <div className={s.collectionCard_middle}></div>
-      <div className={s.collectionCard_bottom}></div>
+      <div className={s.collectionCard_bottom}>
+        <Typography.Text>{t("collectionCard.createdAt")}:</Typography.Text>
+        <Typography.Text type="secondary">
+          {formatDate(new Date(Date.parse(createdAt)))}
+        </Typography.Text>
+      </div>
       <EditCollectionModalWindow
         showEditCollectionModal={showEditCollectionModal}
         setShowEditCollectionModal={setShowEditCollectionModal}
         collectionId={id}
       />
       <ModalConfirm
-        title={`Do you really want to delete ${name} ?`}
+        title={`${t("collectionCard.deleteModal.text")} ${name} ?`}
         showDeleteConfirm={showDeleteCollectionConfirm}
         setShowDeleteConfirm={setShowDeleteCollectionConfirm}
         deleteHandler={deleteCollectionHandler}

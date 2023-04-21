@@ -2,11 +2,11 @@
 
 # change it according to your environment
 AWS_PROFILE="taras-home"
-BUCKET_NAME="vocabulary-app-frontend"
-CLOUDFRONT_DISTRIBUTION_ID="ER05MSOTYYBLZ"
+BUCKET_NAME="vocabulary-app-frontend-deploy"
+CLOUDFRONT_DISTRIBUTION_ID="EMMIS4XUYZROS"
 
 ./node_modules/.bin/cross-env \
-    REACT_APP_API_URL= \
+    REACT_APP_API_URL=https://d2t5eimgxc116v.cloudfront.net \
 
     npm run build
 
